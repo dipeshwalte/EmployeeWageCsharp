@@ -15,18 +15,22 @@ namespace EmployeeWageCsharp
 			
 			Random rand = new Random();
 			int attendance = rand.Next(0, 3);
-			int workingHours = 0;
+			int hoursWorked = 0;
 			int dailywage;
 
-			if (attendance == EMP_FULL_TIME)
+			switch (attendance)
 			{
-				workingHours = FULL_DAY_HOUR;
-			}
-			else if (attendance == EMP_PART_TIME)
-			{
-				workingHours = PART_TIME_HOUR;
-			}
-			dailywage = WAGE_PER_HOUR * workingHours;
+				case EMP_FULL_TIME:
+					hoursWorked = FULL_DAY_HOUR;
+					break;
+				case EMP_PART_TIME:
+					hoursWorked = PART_TIME_HOUR;
+					break;
+				default:
+					break;
+			}//end Switch
+
+			dailywage = WAGE_PER_HOUR * hoursWorked;
 			Console.WriteLine($"Daily Wage : {dailywage}");
 		}
 	}
