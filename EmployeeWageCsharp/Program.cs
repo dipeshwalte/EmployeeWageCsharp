@@ -4,22 +4,19 @@ namespace EmployeeWageCsharp
 {
 	public class Program
 	{
-		const int WAGE_PER_HOUR = 20;
 		const int FULL_DAY_HOUR = 8;
 		const int PART_TIME_HOUR = 4;
 		const int EMP_FULL_TIME = 1;
 		const int EMP_PART_TIME = 2;
-		const int MAX_WORKING_DAYS = 20;
-		const int MAX_WORKING_HOURS = 100;
-
-		static void ComputeWage()
+		
+		static void ComputeWage(string companyName,int wagePerHour,int maxWorkingDays,int maxWorkingHours)
 		{
 			int workingHours = 0;
 			int workingDays = 0;
 			int wagesPerMonth = 0;
 			Random rand = new Random();
 
-			while (workingHours < MAX_WORKING_HOURS && workingDays < MAX_WORKING_DAYS)
+			while (workingHours < maxWorkingHours && workingDays < maxWorkingDays)
 			{
 				int attendance = rand.Next(0, 3);
 				int hoursWorked = 0;
@@ -38,14 +35,15 @@ namespace EmployeeWageCsharp
 				}//end Switch
 
 				workingHours += hoursWorked;
-				wagesPerMonth += (WAGE_PER_HOUR * workingHours);
+				wagesPerMonth += (wagePerHour * workingHours);
 
 			}//end while
-			Console.WriteLine("Wages for the Month: " + wagesPerMonth);
+			Console.WriteLine($"Wages for the company {companyName} for the month : {wagesPerMonth}");
 		}
 		public static void Main(String[] args)
 		{
-			ComputeWage();
+			ComputeWage("TCS",1000,20,100);
+			ComputeWage("Rupak and Sons", 100, 30, 150);
 		}
 	}
 }
