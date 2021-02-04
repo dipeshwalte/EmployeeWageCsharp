@@ -11,9 +11,9 @@ namespace EmployeeWageCsharp
 		const int EMP_PART_TIME = 2;
 		const int MAX_WORKING_DAYS = 20;
 		const int MAX_WORKING_HOURS = 100;
-		public static void Main(String[] args)
+
+		static void ComputeWage()
 		{
-			Console.WriteLine("Welcome to employee wage computation!");
 			int workingHours = 0;
 			int workingDays = 0;
 			int wagesPerMonth = 0;
@@ -42,6 +42,10 @@ namespace EmployeeWageCsharp
 
 			}//end while
 			Console.WriteLine("Wages for the Month: " + wagesPerMonth);
+		}
+		public static void Main(String[] args)
+		{
+			ComputeWage();
 		}
 	}
 }
