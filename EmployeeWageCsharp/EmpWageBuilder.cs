@@ -3,7 +3,7 @@ using System.Text;
 
 namespace EmployeeWageCsharp
 {
-    class EmpWageBuilder
+    class EmpWageBuilder : IComputeEmpWage
     {
 		const int FULL_DAY_HOUR = 8;
 		const int PART_TIME_HOUR = 4;
