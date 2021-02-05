@@ -18,11 +18,13 @@ namespace EmployeeWageCsharp
 		public void AddCompany(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours)
 		{
 			CompanyEmpWage company = new CompanyEmpWage(companyName, wagePerHour, maxWorkingDays, maxWorkingHours);
+			company.setDailyWage(this.ComputeDailyWage(company));
 			company.setWagesPerMonth(this.ComputeMonthlyWage(company));
 			companies.Add(company);
 		}
 		public void AddCompany(CompanyEmpWage company)
 		{
+			company.setDailyWage(this.ComputeDailyWage(company));
 			company.setWagesPerMonth(this.ComputeMonthlyWage(company));
 			companies.Add(company);
 		}
@@ -58,7 +60,12 @@ namespace EmployeeWageCsharp
 			return wagesPerMonth;	
 		}
 
-		public void DisplayCompanyWages()
+		public int ComputeDailyWage(CompanyEmpWage company)
+		{
+			return FULL_DAY_HOUR * company.wagePerHour;
+		}
+
+		public void DisplayCompanyMonthlyWages()
 		{
             foreach (CompanyEmpWage company in companies)
             {
@@ -66,5 +73,12 @@ namespace EmployeeWageCsharp
             }
 		}
 
+		public void DisplayCompanyDailyWages()
+		{
+			foreach (CompanyEmpWage company in companies)
+			{
+				company.printDailyWage();
+			}
+		}
 	}
 }

@@ -11,7 +11,8 @@ namespace EmployeeWageCsharp
 			empWageBuilder.AddCompany("TATA", 800, 20, 100);
 			empWageBuilder.AddCompany("Infy", 900, 20, 100);
 			empWageBuilder.AddCompany("Google", 10000, 20, 100);
-			empWageBuilder.DisplayCompanyWages();
+			empWageBuilder.DisplayCompanyMonthlyWages();
+			empWageBuilder.DisplayCompanyDailyWages();
 		}
 	}
 }

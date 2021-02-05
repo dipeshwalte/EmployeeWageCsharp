@@ -8,6 +8,6 @@ namespace EmployeeWageCsharp
     {
         public void AddCompany(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours);
         public int ComputeMonthlyWage(CompanyEmpWage company);
-        public void DisplayCompanyWages();
+        public void DisplayCompanyMonthlyWages();
     }
 }
