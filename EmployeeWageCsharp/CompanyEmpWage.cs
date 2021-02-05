@@ -32,7 +32,7 @@ namespace EmployeeWageCsharp
 
         public void printMonthlyWage()
         {
-            Console.WriteLine($"Wages for the company {companyName} for the month : {wagesPerMonth}");
+            Console.WriteLine($" Wages for the company {companyName} for the month : {wagesPerMonth}");
         }
 
         public void printDailyWage()
