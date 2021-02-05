@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 namespace EmployeeWageCsharp
@@ -10,23 +11,23 @@ namespace EmployeeWageCsharp
 		const int PART_TIME_HOUR = 4;
 		const int EMP_FULL_TIME = 1;
 		const int EMP_PART_TIME = 2;
-		ArrayList companies;
+		Dictionary<string,CompanyEmpWage>  companiesDictionary;
 		public EmpWageBuilder()
 		{
-			companies = new ArrayList();
+			companiesDictionary = new Dictionary<string, CompanyEmpWage>();
 		}
 		public void AddCompany(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours)
 		{
 			CompanyEmpWage company = new CompanyEmpWage(companyName, wagePerHour, maxWorkingDays, maxWorkingHours);
 			company.setDailyWage(this.ComputeDailyWage(company));
 			company.setWagesPerMonth(this.ComputeMonthlyWage(company));
-			companies.Add(company);
+			companiesDictionary.Add(companyName,company);
 		}
 		public void AddCompany(CompanyEmpWage company)
 		{
 			company.setDailyWage(this.ComputeDailyWage(company));
 			company.setWagesPerMonth(this.ComputeMonthlyWage(company));
-			companies.Add(company);
+			companiesDictionary.Add(company.companyName,company);
 		}
 		public int ComputeMonthlyWage(CompanyEmpWage company)
 		{
@@ -67,18 +68,23 @@ namespace EmployeeWageCsharp
 
 		public void DisplayCompanyMonthlyWages()
 		{
-            foreach (CompanyEmpWage company in companies)
+            foreach (var companyEntry in companiesDictionary)
             {
-				company.printMonthlyWage();
+				companyEntry.Value.printMonthlyWage();
             }
 		}
 
 		public void DisplayCompanyDailyWages()
 		{
-			foreach (CompanyEmpWage company in companies)
+			foreach (var companyEntry in companiesDictionary)
 			{
-				company.printDailyWage();
+				companyEntry.Value.printDailyWage();
 			}
+		}
+
+		public int GetMonthlyWageByCompanyName(string companyName)
+		{
+			return companiesDictionary[companyName].wagesPerMonth;
 		}
 	}
 }

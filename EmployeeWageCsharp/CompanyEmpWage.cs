@@ -10,7 +10,7 @@ namespace EmployeeWageCsharp
         public readonly int wagePerHour;
         public readonly int maxWorkingDays;
         public readonly int maxWorkingHours;
-        int wagesPerMonth = 0;
+        public int wagesPerMonth = 0;
         int dailyWage = 0;
         public CompanyEmpWage(string companyName, int wagePerHour,int maxWorkingDays, int maxWorkingHours)
         {
