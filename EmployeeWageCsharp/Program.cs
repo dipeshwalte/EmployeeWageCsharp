@@ -13,6 +13,7 @@ namespace EmployeeWageCsharp
 			empWageBuilder.AddCompany("Google", 10000, 20, 100);
 			empWageBuilder.DisplayCompanyMonthlyWages();
 			empWageBuilder.DisplayCompanyDailyWages();
+            Console.WriteLine($"Monthly Wages for Google are {empWageBuilder.GetMonthlyWageByCompanyName("Google")} ");
 		}
 	}
 }
