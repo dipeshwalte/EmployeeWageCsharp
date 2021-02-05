@@ -9,26 +9,34 @@ namespace EmployeeWageCsharp
 		const int PART_TIME_HOUR = 4;
 		const int EMP_FULL_TIME = 1;
 		const int EMP_PART_TIME = 2;
-        readonly string companyName;
-        readonly int wagePerHour;
-        readonly int maxWorkingDays;
-        readonly int maxWorkingHours;
-		int wagesPerMonth = 0;
-		public EmpWageBuilder(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours)
+		CompanyEmpWage[] companies;
+		int noOfCompanies;
+		public EmpWageBuilder()
 		{
-			this.companyName = companyName;
-			this.wagePerHour = wagePerHour;
-			this.maxWorkingDays = maxWorkingDays;
-			this.maxWorkingHours = maxWorkingHours;
+			companies = new CompanyEmpWage[10];
+			noOfCompanies = 0;
 		}
-		public void ComputeWage()
+		public void AddCompany(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours)
+		{
+			CompanyEmpWage company = new CompanyEmpWage(companyName, wagePerHour, maxWorkingDays, maxWorkingHours);
+			company.setWagesPerMonth(this.ComputeMonthlyWage(company));
+			companies[noOfCompanies] = company;
+			noOfCompanies++;
+		}
+		public void AddCompany(CompanyEmpWage company)
+		{
+			company.setWagesPerMonth(this.ComputeMonthlyWage(company));
+			companies[noOfCompanies] = company;
+			noOfCompanies++;
+		}
+		public int ComputeMonthlyWage(CompanyEmpWage company)
 		{
 			int workingHours = 0;
 			int workingDays = 0;
-			
+			int wagesPerMonth = 0;
 			Random rand = new Random();
 
-			while (workingHours < maxWorkingHours && workingDays < maxWorkingDays)
+			while (workingHours < company.maxWorkingHours && workingDays < company.maxWorkingDays)
 			{
 				int attendance = rand.Next(0, 3);
 				int hoursWorked = 0;
@@ -47,14 +55,19 @@ namespace EmployeeWageCsharp
 				}//end Switch
 
 				workingHours += hoursWorked;
-				wagesPerMonth += (wagePerHour * workingHours);
+				wagesPerMonth += (company.wagePerHour * workingHours);
 
 			}//end while
-			
+			return wagesPerMonth;	
 		}
-		public override string ToString()
+
+		public void DisplayCompanyWages()
 		{
-			return $"Wages for the company {companyName} for the month : {wagesPerMonth}";
+            for (int i = 0; i < noOfCompanies; i++)
+            {
+				companies[i].printMonthlyWage();
+            }
 		}
+
 	}
 }
