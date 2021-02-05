@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Text;
 
 namespace EmployeeWageCsharp
@@ -9,25 +10,21 @@ namespace EmployeeWageCsharp
 		const int PART_TIME_HOUR = 4;
 		const int EMP_FULL_TIME = 1;
 		const int EMP_PART_TIME = 2;
-		CompanyEmpWage[] companies;
-		int noOfCompanies;
+		ArrayList companies;
 		public EmpWageBuilder()
 		{
-			companies = new CompanyEmpWage[10];
-			noOfCompanies = 0;
+			companies = new ArrayList();
 		}
 		public void AddCompany(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours)
 		{
 			CompanyEmpWage company = new CompanyEmpWage(companyName, wagePerHour, maxWorkingDays, maxWorkingHours);
 			company.setWagesPerMonth(this.ComputeMonthlyWage(company));
-			companies[noOfCompanies] = company;
-			noOfCompanies++;
+			companies.Add(company);
 		}
 		public void AddCompany(CompanyEmpWage company)
 		{
 			company.setWagesPerMonth(this.ComputeMonthlyWage(company));
-			companies[noOfCompanies] = company;
-			noOfCompanies++;
+			companies.Add(company);
 		}
 		public int ComputeMonthlyWage(CompanyEmpWage company)
 		{
@@ -63,9 +60,9 @@ namespace EmployeeWageCsharp
 
 		public void DisplayCompanyWages()
 		{
-            for (int i = 0; i < noOfCompanies; i++)
+            foreach (CompanyEmpWage company in companies)
             {
-				companies[i].printMonthlyWage();
+				company.printMonthlyWage();
             }
 		}
 
